@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ae95153a4b27b8a43b979e9c62482269
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Head Human Academy Italic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8dea632d98d65d342a44194d5c398bd2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

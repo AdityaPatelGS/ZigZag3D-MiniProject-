@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: fd33330ff8a78bd43aafe791cf58dc41
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Head Human Bold Expanded Ital
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 62ed9b24d02bcf04ab299d9bcdb7d6d5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
