@@ -25,6 +25,10 @@ public class CharController : MonoBehaviour
 
     private GameManager gameManager;
 
+    public List<Color> BackgroundColors;
+
+    public int BlocksCovered;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -35,6 +39,7 @@ public class CharController : MonoBehaviour
     private void Start() 
     {
         gameManager.StartGame();    
+        BlocksCovered = 0;
     }
 
     private void FixedUpdate()
@@ -103,14 +108,22 @@ public class CharController : MonoBehaviour
     {
         if (other.tag == "Crystal")
         {
-            gameManager.IncreaseScore();
+            //gameManager.IncreaseScore();
 
             GameObject g = Instantiate(CrystalEffect, rayStart.transform.position, Quaternion.identity);
             Destroy(g, 2);
             Destroy(other.gameObject);
 
-            Camera.main.backgroundColor = Random.ColorHSV();
+            Camera.main.backgroundColor = BackgroundColors[Random.Range(0,BackgroundColors.Count+1)];
             audioSource.PlayOneShot(PickUpSound);
+        }
+    }
+    void OnCollisionExit(Collision other)
+    {
+        if(other.gameObject.tag=="Block")
+        {
+            BlocksCovered++;
+            Debug.Log(BlocksCovered);
         }
     }
 }
