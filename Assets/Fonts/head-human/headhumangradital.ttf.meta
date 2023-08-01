@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 9ca45ff0e5e04b44393cf067040ca68c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Head Human Gradient Italic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 37d11fcc5c3ea5e4ebae73f244ba03cf, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

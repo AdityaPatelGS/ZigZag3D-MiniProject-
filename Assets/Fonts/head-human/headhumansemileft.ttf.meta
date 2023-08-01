@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 36cc5c16c00f8154881c7039f564843e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Head Human Semi-Leftalic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 923875d24789e2042907df015ba513e5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
