@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: deded861f7c896541b90175ff7929cb7
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Head Human Expanded
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: bd0cdfdc5876ddd4ea05c2fcd2db4a78, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

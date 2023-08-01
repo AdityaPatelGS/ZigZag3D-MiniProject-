@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: f896cada4ac48ff458f583afb3391e45
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Head Human Title
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 05f521bde7005f449af69331b458d30b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
