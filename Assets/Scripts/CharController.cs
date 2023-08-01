@@ -25,6 +25,10 @@ public class CharController : MonoBehaviour
 
     private GameManager gameManager;
 
+    public List<Color> backgroundColor;
+
+    public int RoadBlocksCovered;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -34,7 +38,8 @@ public class CharController : MonoBehaviour
     }
     private void Start() 
     {
-        gameManager.StartGame();    
+        //gameManager.StartGame();    
+        RoadBlocksCovered = 0;
     }
 
     private void FixedUpdate()
@@ -109,8 +114,17 @@ public class CharController : MonoBehaviour
             Destroy(g, 2);
             Destroy(other.gameObject);
 
-            Camera.main.backgroundColor = Random.ColorHSV();
+            Camera.main.backgroundColor = backgroundColor[Random.Range(0,backgroundColor.Count+1)];
             audioSource.PlayOneShot(PickUpSound);
+
+        }
+    }
+
+    private void OnCollisionExit(Collision other) {
+        if(other.gameObject.tag=="Road")
+        {
+            RoadBlocksCovered++;
+            Debug.Log(RoadBlocksCovered);
         }
     }
 }

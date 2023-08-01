@@ -16,11 +16,11 @@ public class Road : MonoBehaviour
 
     public void createNewRoadPart()
     {
-        Debug.Log("Create new road part");
+        //Debug.Log("Create new road part");
 
         Vector3 spawnPos = Vector3.zero;
         float chance = Random.Range(0, 100);
-        if(chance < 50)
+        if(chance < 40)
         {
             spawnPos = new Vector3(lastPos.x + offset, lastPos.y, lastPos.z + offset);
         }
@@ -29,12 +29,13 @@ public class Road : MonoBehaviour
             spawnPos = new Vector3(lastPos.x - offset, lastPos.y, lastPos.z + offset);
         }
 
-        GameObject g = Instantiate(RoadPrefab, spawnPos, Quaternion.Euler(0, 45, 0));
-
+        var g = Instantiate(RoadPrefab, spawnPos, Quaternion.Euler(0, 45, 0));
+        g.gameObject.tag="Road";
         lastPos = g.transform.position;
 
         roadCount++;
-        if(roadCount % 5 == 0)
+        int RandomCrystalChance = Random.Range(0,10);
+        if(RandomCrystalChance == 1)
         {
             g.transform.GetChild(0).gameObject.SetActive(true);
         }

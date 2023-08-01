@@ -1088,10 +1088,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8938232406028876926}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 5
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1105,8 +1116,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8938232406028876926}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.1
   m_Height: 1
   m_Direction: 1
@@ -1131,6 +1151,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8938660365834555610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1149,26 +1170,26 @@ MonoBehaviour:
   speedMultiplier: 1.03
   speedIncreaseMilestone: 5
   PickUpSound: {fileID: 8300000, guid: 13d3165cf1d854742afd68bae714fe66, type: 3}
-  BackgroundColors:
-  - {r: 0.7, g: 0.21000001, b: 0.21000001, a: 0}
-  - {r: 0.69803923, g: 0.37385622, b: 0.21176471, a: 0}
-  - {r: 0.69803923, g: 0.5372549, b: 0.21176471, a: 0}
-  - {r: 0.69803923, g: 0.69803923, b: 0.21176471, a: 0}
-  - {r: 0.5359477, g: 0.69803923, b: 0.21176471, a: 0}
-  - {r: 0.3738562, g: 0.69803923, b: 0.21176471, a: 0}
-  - {r: 0.21176471, g: 0.69803923, b: 0.21176471, a: 0}
-  - {r: 0.21176471, g: 0.69803923, b: 0.37385628, a: 0}
-  - {r: 0.21176471, g: 0.69803923, b: 0.53594774, a: 0}
-  - {r: 0.21176471, g: 0.69803923, b: 0.69803923, a: 0}
-  - {r: 0.21176471, g: 0.5359476, b: 0.69803923, a: 0}
-  - {r: 0.21176471, g: 0.37385628, b: 0.69803923, a: 0}
-  - {r: 0.21176471, g: 0.21176471, b: 0.69803923, a: 0}
-  - {r: 0.37385607, g: 0.21176471, b: 0.69803923, a: 0}
-  - {r: 0.53594786, g: 0.21176471, b: 0.69803923, a: 0}
-  - {r: 0.69803923, g: 0.21176471, b: 0.69803923, a: 0}
-  - {r: 0.69803923, g: 0.21176471, b: 0.5359476, a: 0}
-  - {r: 0.69803923, g: 0.21176471, b: 0.37385628, a: 0}
-  - {r: 0.69803923, g: 0.21176471, b: 0.21176471, a: 0}
+  backgroundColor:
+  - {r: 0.69803923, g: 0.34901962, b: 0.34901962, a: 0}
+  - {r: 0.69803923, g: 0.46535948, b: 0.34901962, a: 0}
+  - {r: 0.69803923, g: 0.5816994, b: 0.34901962, a: 0}
+  - {r: 0.69803923, g: 0.69803923, b: 0.34901962, a: 0}
+  - {r: 0.5816994, g: 0.69803923, b: 0.34901962, a: 0}
+  - {r: 0.46535945, g: 0.69803923, b: 0.34901962, a: 0}
+  - {r: 0.34901962, g: 0.69803923, b: 0.34901962, a: 0}
+  - {r: 0.34901962, g: 0.69803923, b: 0.46535954, a: 0}
+  - {r: 0.34901962, g: 0.69803923, b: 0.5816994, a: 0}
+  - {r: 0.34901962, g: 0.69803923, b: 0.69803923, a: 0}
+  - {r: 0.34901962, g: 0.5816993, b: 0.69803923, a: 0}
+  - {r: 0.34901962, g: 0.46535954, b: 0.69803923, a: 0}
+  - {r: 0.34901962, g: 0.34901962, b: 0.69803923, a: 0}
+  - {r: 0.4653594, g: 0.34901962, b: 0.69803923, a: 0}
+  - {r: 0.5816995, g: 0.34901962, b: 0.69803923, a: 0}
+  - {r: 0.69803923, g: 0.34901962, b: 0.69803923, a: 0}
+  - {r: 0.69803923, g: 0.34901962, b: 0.5816993, a: 0}
+  - {r: 0.69803923, g: 0.34901962, b: 0.46535954, a: 0}
+  RoadBlocksCovered: 0
 --- !u!82 &3249564638180017569
 AudioSource:
   m_ObjectHideFlags: 0
