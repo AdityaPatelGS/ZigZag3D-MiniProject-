@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Store : MonoBehaviour
 {
     public GameManager gameManager;
-    public Button MainMenuButton;
+    public GameObject NotEnoughCoinsObj;
+    public Text CrystalsAvailable;
 
     public Button Player1;
     public Button Player2;
@@ -18,7 +19,8 @@ public class Store : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MainMenuButton.onClick.AddListener(GoToMainMenu);
+        NotEnoughCoinsObj.SetActive(false);
+        CrystalsAvailable.text = gameManager.CrystalCount.ToString();
 
         Player1.onClick.AddListener(SetPlayer1);
         Player2.onClick.AddListener(SetPlayer2);
@@ -28,34 +30,100 @@ public class Store : MonoBehaviour
         Player6.onClick.AddListener(SetPlayer6);
 
     }
-
-    public void GoToMainMenu()
-    {
-        this.gameObject.SetActive(false);
-    }
-
     public void SetPlayer1()
     {
-        gameManager.SelectedPlayerIndex = 1;
+        if(gameManager.CrystalCount>=10)
+        {
+            gameManager.SelectedPlayerIndex = 1;
+            gameManager.CrystalCount-=10;
+            CrystalsAvailable.text = gameManager.CrystalCount.ToString();
+        }
+        else
+        {
+            NotEnoughCoinsObj.SetActive(true);
+            MessageShowTime();
+        }
     }
     public void SetPlayer2()
     {
-        gameManager.SelectedPlayerIndex = 2;
+        if(gameManager.CrystalCount>=20)
+        {
+            gameManager.SelectedPlayerIndex = 2;
+            gameManager.CrystalCount-=20;
+            CrystalsAvailable.text = gameManager.CrystalCount.ToString();
+        }
+        else
+        {
+            NotEnoughCoinsObj.SetActive(true);
+            MessageShowTime();
+        }
+
     }
     public void SetPlayer3()
     {
-        gameManager.SelectedPlayerIndex = 3;
+        if(gameManager.CrystalCount>=30)
+        {
+            gameManager.SelectedPlayerIndex = 3;
+            gameManager.CrystalCount-=30;
+            CrystalsAvailable.text = gameManager.CrystalCount.ToString();
+        }
+        else
+        {
+            NotEnoughCoinsObj.SetActive(true);
+            MessageShowTime();
+        }
+        
     }
     public void SetPlayer4()
     {
+        if(gameManager.CrystalCount>=40)
+        {
+            gameManager.SelectedPlayerIndex = 4;
+            gameManager.CrystalCount-=40;
+            CrystalsAvailable.text = gameManager.CrystalCount.ToString();
+        }
+        else
+        {
+            NotEnoughCoinsObj.SetActive(true);
+            MessageShowTime();
+        }
         gameManager.SelectedPlayerIndex = 4;
     }
     public void SetPlayer5()
     {
-        gameManager.SelectedPlayerIndex = 5;
+        if(gameManager.CrystalCount>=50)
+        {
+            gameManager.SelectedPlayerIndex = 5;
+            gameManager.CrystalCount-=50;
+            CrystalsAvailable.text = gameManager.CrystalCount.ToString();
+        }
+        else
+        {
+            NotEnoughCoinsObj.SetActive(true);
+            MessageShowTime();
+        }
+
     }
     public void SetPlayer6()
     {
-        gameManager.SelectedPlayerIndex = 6;
+        if(gameManager.CrystalCount>=60)
+        {
+            gameManager.SelectedPlayerIndex = 6;
+            gameManager.CrystalCount-=60;
+            CrystalsAvailable.text = gameManager.CrystalCount.ToString();
+        }
+        else
+        {
+            NotEnoughCoinsObj.SetActive(true);
+            MessageShowTime();
+        }
+    }
+
+
+    public IEnumerator MessageShowTime()
+    {
+        yield return new WaitForSeconds(5f);
+        NotEnoughCoinsObj.SetActive(false);
+        
     }
 }

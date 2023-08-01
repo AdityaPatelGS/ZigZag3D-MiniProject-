@@ -13,10 +13,21 @@ public class GameManager : MonoBehaviour
 
     public int SelectedPlayerIndex;
 
+    public int CrystalCount;
     public FollowCam FC;
 
     public GameObject MainMenuPanel;
-    public GameObject PauseMenuPanel;
+    //public GameObject PauseMenuPanel;
+
+    public GameObject StorePanel;
+
+
+    public Button StartGameButton;
+    public Button QuitGameButton;
+    //public Button PauseButton;
+    public Button StoreButton;
+    public Button MainMenuButton;
+    public Button ResumeButton;
 
     public GameObject DefaultPlayer;
     public GameObject SelectedPlayer;
@@ -28,23 +39,43 @@ public class GameManager : MonoBehaviour
     public GameObject Player4;
     public GameObject Player5;
     public GameObject Player6;
+
     private void Awake()
     {
+        SelectedPlayerIndex=0;
+        if(PlayerPrefs.HasKey("CrystalCount"))
+        {
+            CrystalCount = PlayerPrefs.GetInt("CrystalCount");
+        }
+        else
+        {
+            CrystalCount = 0;
+        }        
+
         highScoreText.text = "best : " + getHighScore().ToString();
         Application.targetFrameRate = 144;
         MainMenuPanel.SetActive(true);
-        PauseMenuPanel.SetActive(false); 
+        StorePanel.SetActive(false);
+        //PauseMenuPanel.SetActive(false); 
         Time.timeScale = 0f;
        
     }
 
     private void Start()
     {
-        StartGame();
-       
+        StartGameButton.onClick.AddListener(StartGame);
+        QuitGameButton.onClick.AddListener(QuitGame);
+
+        StoreButton.onClick.AddListener(GoToStore);
+        MainMenuButton.onClick.AddListener(GoToMainMenu);
+        //PauseButton.onClick.AddListener(PauseGame);
+        //ResumeButton.onClick.AddListener(ResumeGame);
+
+        //StartGame();       
     }
     public void StartGame()
     {
+        MainMenuPanel.SetActive(false);
         gameStarted = true;
         FindObjectOfType<Road>().StartBuilding();
 
@@ -72,8 +103,8 @@ public class GameManager : MonoBehaviour
             break;
         }
 
-        GameObject player = Instantiate(DefaultPlayer, PlayerStart.transform.position, PlayerStart.transform.rotation);
-        FC.StartGame(player.transform);
+        //GameObject player = Instantiate(DefaultPlayer, PlayerStart.transform.position, PlayerStart.transform.rotation);
+        FC.StartGame(SpawnedPlayer.transform);
 
         Time.timeScale = 1.0f;
     }   
@@ -84,6 +115,10 @@ public class GameManager : MonoBehaviour
         {
             StartGame();
         }
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
     public void EndGame()
     {
@@ -105,5 +140,30 @@ public class GameManager : MonoBehaviour
     public int getHighScore()
     {        
         return PlayerPrefs.GetInt("Highscore");
+    }
+
+    public void GoToStore()
+    {
+        Debug.Log("Store Button Clicked");
+        MainMenuPanel.SetActive(false);
+        StorePanel.SetActive(true);
+    }
+    public void GoToMainMenu()
+    {
+        StorePanel.SetActive(false);
+        MainMenuPanel.SetActive(true);
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        //PauseMenuPanel.SetActive(true);
+
+    }
+
+    public void ResumeGame()
+    {
+        //PauseMenuPanel.SetActive(false);
+        Time.timeScale=1f;
     }
 }

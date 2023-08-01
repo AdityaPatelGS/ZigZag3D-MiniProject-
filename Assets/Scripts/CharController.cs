@@ -1,9 +1,6 @@
-using JetBrains.Annotations;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]   
 public class CharController : MonoBehaviour
@@ -14,11 +11,13 @@ public class CharController : MonoBehaviour
     private Animator Anim;
     private Rigidbody rb;
     private bool walkingRight = true;
-
+    public bool CanJump;
     public float moveSpeed = 0;
     public float speedMultiplier;
     public float speedIncreaseMilestone;
     private float speedMilestoneCount;
+
+    public float jumpForce = 5f;
 
     private AudioSource audioSource;
     public AudioClip PickUpSound;
@@ -39,6 +38,7 @@ public class CharController : MonoBehaviour
     private void Start() 
     {
         //gameManager.StartGame();    
+        CanJump=true;   
         RoadBlocksCovered = 0;
     }
 
@@ -73,10 +73,12 @@ public class CharController : MonoBehaviour
         if (!Physics.Raycast(rayStart.position, -transform.up, out hit, Mathf.Infinity))
         {
             Anim.SetBool("isFalling",true);
+            CanJump=false;
         }
         else
         {
             Anim.SetBool("isFalling",false);
+            CanJump=true;
         }
 
         if(transform.position.y < -3)
@@ -126,5 +128,10 @@ public class CharController : MonoBehaviour
             RoadBlocksCovered++;
             Debug.Log(RoadBlocksCovered);
         }
+    }
+    public void Jump()
+    {
+        // Add upward force to the Rigidbody to make it jump
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 }
