@@ -22,11 +22,13 @@ public class CharController : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip PickUpSound;
 
-    private GameManager gameManager;
+    public GameManager gameManager;
 
     public List<Color> backgroundColor;
 
     public int RoadBlocksCovered;
+
+    public Button JumpButton;
 
     void Awake()
     {
@@ -37,6 +39,7 @@ public class CharController : MonoBehaviour
     }
     private void Start() 
     {
+        JumpButton.onClick.AddListener(Jump);
         //gameManager.StartGame();    
         CanJump=true;   
         RoadBlocksCovered = 0;
@@ -68,9 +71,13 @@ public class CharController : MonoBehaviour
         {
             Switch();
         }
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            Jump();
+        }
         RaycastHit hit;
 
-        if (!Physics.Raycast(rayStart.position, -transform.up, out hit, Mathf.Infinity))
+        if (!Physics.Raycast(rayStart.position, -transform.up, out hit, 1))
         {
             Anim.SetBool("isFalling",true);
             CanJump=false;
@@ -115,8 +122,7 @@ public class CharController : MonoBehaviour
             GameObject g = Instantiate(CrystalEffect, rayStart.transform.position, Quaternion.identity);
             Destroy(g, 2);
             Destroy(other.gameObject);
-
-            Camera.main.backgroundColor = backgroundColor[Random.Range(0,backgroundColor.Count+1)];
+            
             audioSource.PlayOneShot(PickUpSound);
 
         }
@@ -126,12 +132,25 @@ public class CharController : MonoBehaviour
         if(other.gameObject.tag=="Road")
         {
             RoadBlocksCovered++;
+            if(RoadBlocksCovered%50 == 1)
+            {
+                LevelUp();
+            }
+            other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             Debug.Log(RoadBlocksCovered);
         }
     }
     public void Jump()
     {
         // Add upward force to the Rigidbody to make it jump
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        if(CanJump)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+    public void LevelUp()
+    {
+        Camera.main.backgroundColor = backgroundColor[Random.Range(0, backgroundColor.Count + 1)];
     }
 }

@@ -19,21 +19,69 @@ public class Road : MonoBehaviour
         //Debug.Log("Create new road part");
 
         Vector3 spawnPos = Vector3.zero;
-        float chance = Random.Range(0, 100);
-        if(chance < 40)
+
+        if(roadCount <50)
         {
-            spawnPos = new Vector3(lastPos.x + offset, lastPos.y, lastPos.z + offset);
+            float chance = Random.Range(0, 100);
+            if (chance < 30)
+            {
+                spawnPos = new Vector3(lastPos.x + offset, lastPos.y, lastPos.z + offset);
+            }
+            else
+            {
+                spawnPos = new Vector3(lastPos.x - offset, lastPos.y, lastPos.z + offset);
+            }
+            
+
+        }
+        else if(roadCount <100) 
+        {
+            float chance = Random.Range(0, 100);
+            if (chance < 60)
+            {
+                spawnPos = new Vector3(lastPos.x + offset, lastPos.y, lastPos.z + offset);
+            }
+            else
+            {
+                spawnPos = new Vector3(lastPos.x - offset, lastPos.y, lastPos.z + offset);
+            }
         }
         else
         {
-            spawnPos = new Vector3(lastPos.x - offset, lastPos.y, lastPos.z + offset);
+            float chance = Random.Range(0, 100);
+            if (chance < 80)
+            {
+                spawnPos = new Vector3(lastPos.x + offset, lastPos.y, lastPos.z + offset);
+            }
+            else
+            {
+                spawnPos = new Vector3(lastPos.x - offset, lastPos.y, lastPos.z + offset);
+            }
         }
 
         var g = Instantiate(RoadPrefab, spawnPos, Quaternion.Euler(0, 45, 0));
-        g.gameObject.tag="Road";
+        g.gameObject.tag = "Road";
         lastPos = g.transform.position;
-
         roadCount++;
+
+
+        if (roadCount > 50)
+        {
+            int RandomBlankChance = Random.Range(0, 10);    
+            if(RandomBlankChance ==1)
+            {
+                g.gameObject.SetActive(false);
+            }
+        }
+        else if (roadCount > 100)
+        {
+            int RandomBlankChance = Random.Range(0, 10);
+            if (RandomBlankChance < 5)
+            {
+                g.gameObject.SetActive(false);
+            }
+        }
+
         int RandomCrystalChance = Random.Range(0,10);
         if(RandomCrystalChance == 1)
         {

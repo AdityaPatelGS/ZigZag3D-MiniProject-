@@ -7,27 +7,27 @@ public class GameManager : MonoBehaviour
     public bool gameStarted;
     public int score;
     public Text ScoreText;
-    public Text highScoreText;
 
     public Transform PlayerStart;
 
     public int SelectedPlayerIndex;
 
-    public int CrystalCount;
     public FollowCam FC;
 
     public GameObject MainMenuPanel;
-    //public GameObject PauseMenuPanel;
+
 
     public GameObject StorePanel;
 
 
     public Button StartGameButton;
     public Button QuitGameButton;
-    //public Button PauseButton;
     public Button StoreButton;
     public Button MainMenuButton;
-    public Button ResumeButton;
+
+
+
+    public Button JumpButton;
 
     public GameObject DefaultPlayer;
     public GameObject SelectedPlayer;
@@ -37,27 +37,29 @@ public class GameManager : MonoBehaviour
     public GameObject Player2;
     public GameObject Player3;
     public GameObject Player4;
-    public GameObject Player5;
-    public GameObject Player6;
+
 
     private void Awake()
     {
         SelectedPlayerIndex=0;
-        if(PlayerPrefs.HasKey("CrystalCount"))
+        if(PlayerPrefs.HasKey("score"))
         {
-            CrystalCount = PlayerPrefs.GetInt("CrystalCount");
+            score = PlayerPrefs.GetInt("score");
         }
         else
         {
-            CrystalCount = 0;
+            score = 0;
         }        
 
-        highScoreText.text = "best : " + getHighScore().ToString();
         Application.targetFrameRate = 144;
         MainMenuPanel.SetActive(true);
         StorePanel.SetActive(false);
-        //PauseMenuPanel.SetActive(false); 
         Time.timeScale = 0f;
+
+        Player1.SetActive(false);   
+        Player2.SetActive(false);   
+        Player3.SetActive(false);
+        Player4.SetActive(false);
        
     }
 
@@ -68,8 +70,7 @@ public class GameManager : MonoBehaviour
 
         StoreButton.onClick.AddListener(GoToStore);
         MainMenuButton.onClick.AddListener(GoToMainMenu);
-        //PauseButton.onClick.AddListener(PauseGame);
-        //ResumeButton.onClick.AddListener(ResumeGame);
+
 
         //StartGame();       
     }
@@ -81,26 +82,31 @@ public class GameManager : MonoBehaviour
 
         switch(SelectedPlayerIndex)
         {
-            case 1: SpawnedPlayer = Instantiate(Player1, PlayerStart.transform.position, PlayerStart.transform.rotation);
+
+            case 1:SpawnedPlayer = Player1;
+                Player1.SetActive(true);
             break;
 
-            case 2: SpawnedPlayer = Instantiate(Player2, PlayerStart.transform.position, PlayerStart.transform.rotation);
+            case 2:SpawnedPlayer = Player2;
+                Player2.SetActive(true); 
             break;
 
-            case 3:SpawnedPlayer = Instantiate(Player3, PlayerStart.transform.position, PlayerStart.transform.rotation);
+
+            case 3:
+                SpawnedPlayer = Player3;
+                Player3.SetActive(true);
             break;
 
-            case 4:SpawnedPlayer = Instantiate(Player4, PlayerStart.transform.position, PlayerStart.transform.rotation);
+            case 4:SpawnedPlayer = Player4;
+                Player4.SetActive(true);
             break;
 
-            case 5:SpawnedPlayer = Instantiate(Player5, PlayerStart.transform.position, PlayerStart.transform.rotation);
-            break;
 
-            case 6:SpawnedPlayer = Instantiate(Player6, PlayerStart.transform.position, PlayerStart.transform.rotation);
-            break;
 
-            default:SpawnedPlayer = Instantiate(DefaultPlayer, PlayerStart.transform.position, PlayerStart.transform.rotation);
-            break;
+            default:
+                SpawnedPlayer = DefaultPlayer;
+                DefaultPlayer.SetActive(true);
+                break;
         }
 
         //GameObject player = Instantiate(DefaultPlayer, PlayerStart.transform.position, PlayerStart.transform.rotation);
@@ -123,28 +129,20 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         SceneManager.LoadScene(0);
+        PlayerPrefs.SetInt("score", score);
     }
 
     public void IncreaseScore()
     {
         score++;
+        PlayerPrefs.Save();
         ScoreText.text = score.ToString();
-
-        if(score > getHighScore())
-        {
-            PlayerPrefs.SetInt("Highscore", score);
-            highScoreText.text = "Best : " + score.ToString();
-        }
     }
 
-    public int getHighScore()
-    {        
-        return PlayerPrefs.GetInt("Highscore");
-    }
+
 
     public void GoToStore()
     {
-        Debug.Log("Store Button Clicked");
         MainMenuPanel.SetActive(false);
         StorePanel.SetActive(true);
     }
@@ -154,16 +152,5 @@ public class GameManager : MonoBehaviour
         MainMenuPanel.SetActive(true);
     }
 
-    public void PauseGame()
-    {
-        Time.timeScale = 0f;
-        //PauseMenuPanel.SetActive(true);
 
-    }
-
-    public void ResumeGame()
-    {
-        //PauseMenuPanel.SetActive(false);
-        Time.timeScale=1f;
-    }
 }
