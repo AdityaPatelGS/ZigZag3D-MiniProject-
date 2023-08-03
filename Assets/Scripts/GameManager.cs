@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public int score;
     public Text ScoreText;
 
+    public Text FPS_TEXT;
+
     public Transform PlayerStart;
 
     public int SelectedPlayerIndex;
@@ -45,10 +47,12 @@ public class GameManager : MonoBehaviour
         if(PlayerPrefs.HasKey("score"))
         {
             score = PlayerPrefs.GetInt("score");
+            ScoreText.text = score.ToString();
         }
         else
         {
             score = 0;
+            ScoreText.text = score.ToString();
         }        
 
         Application.targetFrameRate = 144;
@@ -121,6 +125,7 @@ public class GameManager : MonoBehaviour
         {
             StartGame();
         }
+        FPS_TEXT.text = (1/Time.deltaTime).ToString();
     }
     public void QuitGame()
     {

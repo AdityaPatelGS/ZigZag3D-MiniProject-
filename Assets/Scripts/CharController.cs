@@ -29,6 +29,7 @@ public class CharController : MonoBehaviour
     public int RoadBlocksCovered;
 
     public Button JumpButton;
+    public Button SwitchButton;
 
     void Awake()
     {
@@ -40,6 +41,7 @@ public class CharController : MonoBehaviour
     private void Start() 
     {
         JumpButton.onClick.AddListener(Jump);
+        SwitchButton.onClick.AddListener(Switch);
         //gameManager.StartGame();    
         CanJump=true;   
         RoadBlocksCovered = 0;
@@ -67,10 +69,6 @@ public class CharController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0))
-        {
-            Switch();
-        }
         if(Input.GetKeyDown(KeyCode.W))
         {
             Jump();

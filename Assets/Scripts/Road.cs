@@ -11,7 +11,7 @@ public class Road : MonoBehaviour
 
     public void StartBuilding()
     {
-        InvokeRepeating("createNewRoadPart", 0.2f, 0.2f);
+        InvokeRepeating("createNewRoadPart", 0.02f, 0.02f);
     }
 
     public void createNewRoadPart()
